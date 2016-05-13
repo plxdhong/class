@@ -23,6 +23,10 @@ int main()
 		everyone[i].a = heng[i];
 		everyone[i].b = shu[i];
 		cout << "\t你的新位置：" << "(" << everyone[i].a << "," << everyone[i].b << ")" << endl;
+		char ch;
+	cin >> ch;
+	if(ch == 'a')
+	{ }
 	}
 	cout << "输入结束";
 	cout << endl << "按a显示所有位置，按其他键退出";
