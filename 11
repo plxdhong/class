@@ -2,12 +2,15 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <string>
 using namespace std;
+
+
 int main()
 {
 	cout << "DHS换座位软件\t版本号： V 0.0.1（beta）" << endl << "战无不胜的Donghong Say\t版权所有" << endl << endl;
-	int heng[11] = { 1,1,1,1,2,2,2,2,3,3,3,3 };
-	int shu[11] = { 1,1,1,2,2,2,3,3,3,4,4,4 };
+	int heng[12] = { 1,1,1,1,2,2,2,2,3,3,3,3 };
+	int shu[12] = { 1,1,1,2,2,2,3,3,3,4,4,4 };
 	std::random_shuffle(heng, heng + 12);
 	std::random_shuffle(shu, shu + 12);
 	struct setl {
@@ -19,16 +22,28 @@ int main()
 	for (int i = 0; i <= 11; i++)
 	{
 		cout << "第" << i + 1 << "个人，请输入你的名字：";
-		std::cin.getline(everyone[i].name);
+		getline(cin,everyone[i].name);
 		everyone[i].a = heng[i];
 		everyone[i].b = shu[i];
 		cout << "\t你的新位置：" << "(" << everyone[i].a << "," << everyone[i].b << ")" << endl;
-		char ch;
-	cin >> ch;
-	if(ch == 'a')
-	{ }
 	}
 	cout << "输入结束";
 	cout << endl << "按a显示所有位置，按其他键退出";
+	char ch;
+	cin >> ch;
+	if (ch == 'a')
+	{
+		cout << endl << endl << "\t 所有人位置" << endl;
+		for (int i = 0; i <= 11; i++)
+			cout << everyone[i].name << "\t" << "(" << everyone[i].a << "," << everyone[i].b << ")" << endl;
 
+	}
+	ofstream outfilm;
+	outfilm.open("set.txt");
+	outfilm << endl << endl << "\t 所有人的位置" << endl;
+	for(int i = 0;i <= 11;i++)
+		outfilm << everyone[i].name << "\t" << "(" << everyone[i].a << "," << everyone[i].b << ")" << endl;
+	cout << "现在，所以的信息都被保存了在set.txt中咯！";
+	system("pause");
+	return 0;
 }
